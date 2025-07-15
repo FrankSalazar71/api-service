@@ -1,0 +1,13 @@
+# kubectl apply -f service.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: age-detector-be
+  namespace: franksalazar
+spec:
+  type: LoadBalancer   # Expondrá el puerto a través de un nodo del clúster
+  ports:
+    - port: 8001           # Puerto interno del servicio (acceso desde el clúster) http://svc:80
+      targetPort: 8001   # Puerto donde escucha tu contenedor (en el Pod)
+  selector:
+    app: age-detector-be # Debe coincidir con los labels del Deployment/Pod

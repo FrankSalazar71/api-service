@@ -1,0 +1,23 @@
+# iniciar clúster kubernetes
+minikube start
+
+#apply todos los recursos e configuraciones
+kubectl apply -f ./manifest/namespace.yml
+
+# listar namespace
+kubectl get namespace
+
+# listar todas las configuraciones
+kubectl get all -n franksalazar
+
+# consultar todos los recursos y secret de un namespace "juancondori"
+kubectl get all,secrets -n franksalazar
+
+# listar los servicios
+minikube service list
+
+# probar el microservicio dentro del clúster con curl
+curl http://192.168.49.2:30445/api/v1/chatgpt4/chats
+
+kubectl port-forward service/age-detector-be 8001:8001 -n franksalazar
+
